@@ -1,4 +1,5 @@
 ✅ index.html 
+README.md └── _sdk/ └── element_sdk.js ← Auto-provided by Canva
 <!doctype html>
 <html lang="en">
  <head>
