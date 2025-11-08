@@ -1,31 +1,61 @@
+
+UPDATED CODE FOR CELEBRITYFANCARD.SHOP
+
 <!doctype html>
 <html lang="en">
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <script src="/_sdk/element_sdk.js"></script>
+  <title>CelebrityFanCard - Interactive Digital Hub</title>
+  <script src="/_sdk/element_sdk.js"></script>
   <style>
     body {
-      box-sizing: content-box;
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100%;
       color: #2d3748;
-        }
+    }
 
     html {
       height: 100%;
     }
 
-
-
-    .container {rectangular shape
+    .container {
       max-width: 1200px;
-      margin: 5 auto;
+      margin: 0 auto;
       padding: 2rem;
     }
 
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
 
     .membership-banner {
       display: flex;
@@ -34,11 +64,7 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-top: 1rem;
-
-    
-            }
-
-
+    }
 
     .discount-badge {
       background: linear-gradient(135deg, #f59e0b, #d97706);
@@ -71,9 +97,7 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);
       background: linear-gradient(135deg, #047857, #065f46);
-
-    
-                }
+    }
 
     .search-section {
       margin-bottom: 2rem;
@@ -187,11 +211,9 @@
       display: none;
     }
 
-
     .search-suggestions.active {
       display: block;
     }
-
 
     .suggestion-item {
       padding: 0.75rem 1rem;
@@ -203,16 +225,13 @@
       gap: 0.75rem;
     }
 
-
     .suggestion-item:hover {
       background: #f8fafc;
     }
 
-
     .suggestion-item:last-child {
       border-bottom: none;
     }
-
 
     .suggestion-icon {
       font-size: 1.5rem;
@@ -492,9 +511,7 @@
       to {
         transform: translateY(0);
         opacity: 1;
-  
-      
-              }
+      }
     }
 
     .modal-icon {
@@ -520,9 +537,7 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
- 
-    
-         }
+    }
 
     .btn-modal {
       padding: 0.75rem 2rem;
@@ -539,18 +554,15 @@
       color: white;
     }
 
-
     .btn-modal-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
     }
 
-
     .btn-modal-secondary {
       background: #e2e8f0;
       color: #475569;
     }
-
 
     .btn-modal-secondary:hover {
       background: #cbd5e1;
@@ -561,11 +573,9 @@
         font-size: 2rem;
       }
 
-
       .section-title {
         font-size: 1.8rem;
       }
-
 
       .categories-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -577,10 +587,7 @@
 
       .search-box {
         margin: 0 1rem;
-  
-      
-          
-                  }
+      }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -588,27 +595,12 @@
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body>
-  <div {class="container">
-   <header class="header" id="header">Click "Join Premium Today" To Claim Your Personalized Celebrity Fan Card</header>
-  </header>
-  
-    <h1 class="site-title" id="siteTitle">CelebrityFanCard<h1
-    font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-    </h1>
-    
-    <p class="tagline" id="tagline">Your Ultimate Celebrity Connection Hub<p
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-    </p>
-    
+  <div class="container">
+   <header class="header">
+    <h1 class="site-title" id="siteTitle">CelebrityFanCard</h1>
+    <p class="tagline" id="tagline">Your Ultimate Celebrity Connection Hub</p>
     <div class="membership-banner"><span class="discount-badge" id="discountBadge">🎉 25% OFF Premium Membership</span> <button class="btn-membership" id="membershipBtn">Join Premium Today</button>
     </div>
-    }
-        
-    
    </header>
    <section class="search-section">
     <div class="search-container">
@@ -700,15 +692,14 @@
   </div>
   <script>
     const defaultConfig = {
-      site_title: " Your No. 1 Most Trusted Celebrity Fan Card Vendor",
-      tagline: "The Ultimate Celebrity Connection Hub",
-      discount_text: "🎉 25% OFF Premium Membership",
+      site_title: "CelebrityFanCard",
+      tagline: "Your Ultimate Celebrity Connection Hub",
+      discount_text: "🎉 50% OFF Premium Membership",
       membership_button_text: "Join Premium Today",
       categories_title: "Explore Categories",
       background_color: "#667eea",
       surface_color: "#ffffff",
-      text_color: "#ffffff",
-      text_align: center;
+      text_color: "#1e293b",
       primary_action_color: "#667eea",
       secondary_action_color: "#059669",
       font_family: "Inter",
