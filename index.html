@@ -1,34 +1,1808 @@
+UPDATED CODE FOR CELEBRITYFANCARD.SHOP
+
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CelebrityFanCard - Interactive Digital Hub</title>
-    <script src="/_sdk/element_sdk.js"></script>
-    <style>
-        /* existing styles */
-    </style>
-</head>
-<body>
-<div class="container">
-    <header class="header">
-        <h1 class="site-title" id="siteTitle">CelebrityFanCard</h1>
-        <p class="tagline" id="tagline">Your Ultimate Celebrity Connection Hub</p>
-    </header>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CelebrityFanCard - Interactive Digital Hub</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100%;
+      color: #2d3748;
+    }
 
-    <section class="search-section">
-        <!-- Existing content -->
-        <button onclick="window.location.href='mailto:?subject=Request%20for%20Favorite%20Celebrity%20Fan%20Card&body=I%20would%20like%20to%20request%20a%20Fan%20Card%20for%20my%20favorite%20celebrity.'">
-            Request Fan Card
-        </button>
-    </section>
+    html {
+      height: 100%;
+    }
 
-    <section class="categories-section" id="categoriesSection">
-        <h2 class="section-title">Explore Categories</h2>
-        <div class="categories-grid">
-            <!-- Category content -->
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .membership-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .discount-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .btn-membership {
+      background: linear-gradient(135deg, #059669, #047857);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-membership:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);
+      background: linear-gradient(135deg, #047857, #065f46);
+    }
+
+    .search-section {
+      margin-bottom: 2rem;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 0.75rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-box:focus-within {
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .search-icon {
+      font-size: 1.2rem;
+      color: #64748b;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .search-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .search-clear {
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .search-clear:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    .search-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .search-filter {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .search-filter:hover {
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .search-filter.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-color: transparent;
+    }
+
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .search-suggestions.active {
+      display: block;
+    }
+
+    .suggestion-item {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f1f5f9;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .suggestion-item:hover {
+      background: #f8fafc;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-icon {
+      font-size: 1.5rem;
+    }
+
+    .suggestion-info {
+      flex: 1;
+    }
+
+    .suggestion-name {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .suggestion-category {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .search-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .search-stat {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.75rem 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 0.25rem;
+    }
+
+    .search-stat-label {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .search-results-info {
+      text-align: center;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-weight: 500;
+    }
+
+    .categories-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .category-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: #667eea;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-card.active {
+      border-color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    .category-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .category-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-count {
+      font-size: 0.9rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .celebrities-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .celebrities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .celebrity-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .celebrity-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .celebrity-card.highlight {
+      border: 2px solid #667eea;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .celebrity-image {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .celebrity-info {
+      padding: 1.5rem;
+    }
+
+    .celebrity-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .celebrity-category {
+      font-size: 0.9rem;
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .celebrity-stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .stat {
+      flex: 1;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .btn-follow {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-follow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-follow.following {
+      background: linear-gradient(135deg, #059669, #047857);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #64748b;
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .empty-state-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .modal-text {
+      font-size: 1rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn-modal {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn-modal-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .btn-modal-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-modal-secondary {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-modal-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .celebrities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box {
+        margin: 0 1rem;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container">
+   <header class="header">
+    <h1 class="site-title" id="siteTitle">CelebrityFanCard</h1>
+    <p class="tagline" id="tagline">Your Ultimate Celebrity Connection Hub</p>
+    <div class="membership-banner"><span class="discount-badge" id="discountBadge">🎉 50% OFF Premium Membership</span> <button class="btn-membership" id="membershipBtn">Join Premium Today</button>
+    </div>
+   </header>
+   <section class="search-section">
+    <div class="search-container">
+     <div class="search-box"><span class="search-icon">🔍</span> <input type="text" id="searchInput" placeholder="Search by name, category, or keyword..." class="search-input"> <button class="search-clear" id="searchClear" style="display: none;">✕</button>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+     </div>
+    </div>
+    <div class="search-filters" id="searchFilters">
+     <div class="search-filter" data-filter="all">
+      All Categories
+     </div>
+     <div class="search-filter" data-filter="music">
+      🎵 Music
+     </div>
+     <div class="search-filter" data-filter="movies">
+      🎬 Movies
+     </div>
+     <div class="search-filter" data-filter="sports">
+      ⚽ Sports
+     </div>
+     <div class="search-filter" data-filter="tv">
+      📺 TV Shows
+     </div>
+     <div class="search-filter" data-filter="fashion">
+      👗 Fashion
+     </div>
+     <div class="search-filter" data-filter="gaming">
+      🎮 Gaming
+     </div>
+    </div>
+    <div class="search-stats" id="searchStats" style="display: none;">
+     <div class="search-stat">
+      <div class="search-stat-value" id="totalResults">
+       0
+      </div>
+      <div class="search-stat-label">
+       Results Found
+      </div>
+     </div>
+     <div class="search-stat">
+      <div class="search-stat-value" id="avgRating">
+       0
+      </div>
+      <div class="search-stat-label">
+       Avg Rating
+      </div>
+     </div>
+     <div class="search-stat">
+      <div class="search-stat-value" id="totalFans">
+       0
+      </div>
+      <div class="search-stat-label">
+       Total Fans
+      </div>
+     </div>
+    </div>
+    <div class="search-results-info" id="searchResultsInfo" style="display: none;"></div>
+   </section>
+   <section class="categories-section" id="categoriesSection">
+    <h2 class="section-title" id="categoriesTitle">Explore Categories</h2>
+    <div class="categories-grid" id="categoriesGrid"></div>
+   </section>
+   <section class="celebrities-section">
+    <h2 class="section-title" style="color: #1e293b; text-shadow: none;" id="celebritiesSectionTitle">Featured Celebrities</h2>
+    <div class="celebrities-grid" id="celebritiesGrid"></div>
+   </section>
+  </div>
+  <div class="modal-overlay" id="membershipModal">
+   <div class="modal-content">
+    <div class="modal-icon">
+     ⭐
+    </div>
+    <h3 class="modal-title">Premium Membership</h3>
+    <p class="modal-text">Unlock exclusive content, early access to celebrity updates, and special fan experiences!</p>
+    <div class="modal-buttons"><button class="btn-modal btn-modal-primary" id="confirmMembership">Get Premium</button> <button class="btn-modal btn-modal-secondary" id="closeMembership">Maybe Later</button>
+    </div>
+   </div>
+  </div>
+  <div class="modal-overlay" id="successModal">
+   <div class="modal-content">
+    <div class="modal-icon">
+     🎊
+    </div>
+    <h3 class="modal-title">Welcome to Premium!</h3>
+    <p class="modal-text">Thank you for joining! You now have access to all premium features.</p>
+    <div class="modal-buttons"><button class="btn-modal btn-modal-primary" id="closeSuccess">Start Exploring</button>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: "CelebrityFanCard",
+      tagline: "Your Ultimate Celebrity Connection Hub",
+      discount_text: "🎉 50% OFF Premium Membership",
+      membership_button_text: "Join Premium Today",
+      categories_title: "Explore Categories",
+      background_color: "#667eea",
+      surface_color: "#ffffff",
+      text_color: "#1e293b",
+      primary_action_color: "#667eea",
+      secondary_action_color: "#059669",
+      font_family: "Inter",
+      font_size: 16
+    };
+
+    const categories = [
+      { id: 'music', name: 'Music', icon: '🎵', count: 83 },
+      { id: 'movies', name: 'Movies', icon: '🎬', count: 84 },
+      { id: 'sports', name: 'Sports', icon: '⚽', count: 83 },
+      { id: 'tv', name: 'TV Shows', icon: '📺', count: 84 },
+      { id: 'fashion', name: 'Fashion', icon: '👗', count: 83 },
+      { id: 'gaming', name: 'Gaming', icon: '🎮', count: 83 }
+    ];
+
+    const celebrities = [
+      // Music (83 celebrities)
+      { id: 1, name: 'Taylor Swift', category: 'music', icon: '🎤', fans: '89M', posts: '1.2K', rating: '4.9' },
+      { id: 2, name: 'Ed Sheeran', category: 'music', icon: '🎸', fans: '54M', posts: '678', rating: '4.8' },
+      { id: 3, name: 'Ariana Grande', category: 'music', icon: '🎶', fans: '76M', posts: '1.8K', rating: '4.9' },
+      { id: 4, name: 'Billie Eilish', category: 'music', icon: '🎵', fans: '71M', posts: '892', rating: '4.8' },
+      { id: 5, name: 'Rihanna', category: 'music', icon: '💎', fans: '92M', posts: '1.5K', rating: '5.0' },
+      { id: 6, name: 'Drake', category: 'music', icon: '🎤', fans: '85M', posts: '2.1K', rating: '4.7' },
+      { id: 7, name: 'Beyoncé', category: 'music', icon: '👑', fans: '98M', posts: '1.9K', rating: '5.0' },
+      { id: 8, name: 'Justin Bieber', category: 'music', icon: '🎵', fans: '82M', posts: '3.2K', rating: '4.6' },
+      { id: 9, name: 'Lady Gaga', category: 'music', icon: '🌟', fans: '67M', posts: '1.4K', rating: '4.8' },
+      { id: 10, name: 'The Weeknd', category: 'music', icon: '🌙', fans: '59M', posts: '987', rating: '4.7' },
+      { id: 11, name: 'Adele', category: 'music', icon: '🎤', fans: '73M', posts: '456', rating: '4.9' },
+      { id: 12, name: 'Bruno Mars', category: 'music', icon: '🕺', fans: '61M', posts: '789', rating: '4.8' },
+      { id: 13, name: 'Dua Lipa', category: 'music', icon: '💃', fans: '58M', posts: '1.1K', rating: '4.7' },
+      { id: 14, name: 'Post Malone', category: 'music', icon: '🎸', fans: '64M', posts: '1.3K', rating: '4.6' },
+      { id: 15, name: 'Olivia Rodrigo', category: 'music', icon: '🎵', fans: '45M', posts: '567', rating: '4.8' },
+      { id: 16, name: 'Harry Styles', category: 'music', icon: '🎤', fans: '78M', posts: '892', rating: '4.9' },
+      { id: 17, name: 'Shawn Mendes', category: 'music', icon: '🎸', fans: '52M', posts: '1.2K', rating: '4.7' },
+      { id: 18, name: 'Selena Gomez', category: 'music', icon: '🎶', fans: '69M', posts: '2.3K', rating: '4.8' },
+      { id: 19, name: 'Katy Perry', category: 'music', icon: '🌈', fans: '63M', posts: '1.8K', rating: '4.6' },
+      { id: 20, name: 'John Legend', category: 'music', icon: '🎹', fans: '48M', posts: '934', rating: '4.8' },
+      { id: 21, name: 'Alicia Keys', category: 'music', icon: '🎹', fans: '41M', posts: '678', rating: '4.7' },
+      { id: 22, name: 'Sam Smith', category: 'music', icon: '🎤', fans: '39M', posts: '567', rating: '4.6' },
+      { id: 23, name: 'Camila Cabello', category: 'music', icon: '🎵', fans: '44M', posts: '789', rating: '4.7' },
+      { id: 24, name: 'Charlie Puth', category: 'music', icon: '🎹', fans: '37M', posts: '456', rating: '4.6' },
+      { id: 25, name: 'Halsey', category: 'music', icon: '🌙', fans: '42M', posts: '1.1K', rating: '4.7' },
+      { id: 26, name: 'Lorde', category: 'music', icon: '👑', fans: '35M', posts: '234', rating: '4.8' },
+      { id: 27, name: 'Lizzo', category: 'music', icon: '🎺', fans: '38M', posts: '892', rating: '4.8' },
+      { id: 28, name: 'Doja Cat', category: 'music', icon: '🐱', fans: '46M', posts: '1.3K', rating: '4.7' },
+      { id: 29, name: 'Megan Thee Stallion', category: 'music', icon: '🔥', fans: '43M', posts: '1.5K', rating: '4.6' },
+      { id: 30, name: 'Cardi B', category: 'music', icon: '💎', fans: '51M', posts: '2.1K', rating: '4.7' },
+      { id: 31, name: 'Nicki Minaj', category: 'music', icon: '👑', fans: '68M', posts: '3.4K', rating: '4.8' },
+      { id: 32, name: 'Travis Scott', category: 'music', icon: '🌵', fans: '47M', posts: '1.2K', rating: '4.6' },
+      { id: 33, name: 'Kendrick Lamar', category: 'music', icon: '🎤', fans: '49M', posts: '345', rating: '4.9' },
+      { id: 34, name: 'J. Cole', category: 'music', icon: '🎵', fans: '41M', posts: '567', rating: '4.8' },
+      { id: 35, name: 'Bad Bunny', category: 'music', icon: '🐰', fans: '56M', posts: '1.8K', rating: '4.9' },
+      { id: 36, name: 'Rosalía', category: 'music', icon: '🌹', fans: '34M', posts: '678', rating: '4.7' },
+      { id: 37, name: 'BTS', category: 'music', icon: '💜', fans: '124M', posts: '2.9K', rating: '5.0' },
+      { id: 38, name: 'BLACKPINK', category: 'music', icon: '🖤', fans: '87M', posts: '1.4K', rating: '4.9' },
+      { id: 39, name: 'Coldplay', category: 'music', icon: '🌟', fans: '62M', posts: '892', rating: '4.8' },
+      { id: 40, name: 'Imagine Dragons', category: 'music', icon: '🐉', fans: '45M', posts: '567', rating: '4.7' },
+      { id: 41, name: 'Maroon 5', category: 'music', icon: '🎸', fans: '53M', posts: '1.1K', rating: '4.6' },
+      { id: 42, name: 'OneRepublic', category: 'music', icon: '🎵', fans: '38M', posts: '456', rating: '4.7' },
+      { id: 43, name: 'Twenty One Pilots', category: 'music', icon: '✈️', fans: '41M', posts: '789', rating: '4.8' },
+      { id: 44, name: 'Panic! At The Disco', category: 'music', icon: '🎭', fans: '36M', posts: '634', rating: '4.7' },
+      { id: 45, name: 'Fall Out Boy', category: 'music', icon: '🍂', fans: '33M', posts: '523', rating: '4.6' },
+      { id: 46, name: 'Green Day', category: 'music', icon: '🌱', fans: '39M', posts: '712', rating: '4.7' },
+      { id: 47, name: 'Foo Fighters', category: 'music', icon: '🥁', fans: '42M', posts: '845', rating: '4.8' },
+      { id: 48, name: 'Red Hot Chili Peppers', category: 'music', icon: '🌶️', fans: '44M', posts: '678', rating: '4.7' },
+      { id: 49, name: 'Metallica', category: 'music', icon: '⚡', fans: '47M', posts: '567', rating: '4.8' },
+      { id: 50, name: 'AC/DC', category: 'music', icon: '⚡', fans: '41M', posts: '234', rating: '4.9' },
+      { id: 301, name: 'Kanye West', category: 'music', icon: '🎤', fans: '73M', posts: '2.1K', rating: '4.5' },
+      { id: 302, name: 'Jay-Z', category: 'music', icon: '👑', fans: '68M', posts: '1.8K', rating: '4.8' },
+      { id: 303, name: 'Eminem', category: 'music', icon: '🎤', fans: '71M', posts: '1.2K', rating: '4.9' },
+      { id: 304, name: 'Snoop Dogg', category: 'music', icon: '🌿', fans: '65M', posts: '3.4K', rating: '4.7' },
+      { id: 305, name: 'Dr. Dre', category: 'music', icon: '🎧', fans: '42M', posts: '567', rating: '4.8' },
+      { id: 306, name: '50 Cent', category: 'music', icon: '💰', fans: '38M', posts: '1.9K', rating: '4.6' },
+      { id: 307, name: 'Lil Wayne', category: 'music', icon: '🎤', fans: '45M', posts: '2.8K', rating: '4.5' },
+      { id: 308, name: 'Future', category: 'music', icon: '🚀', fans: '34M', posts: '2.3K', rating: '4.4' },
+      { id: 309, name: 'Lil Baby', category: 'music', icon: '👶', fans: '29M', posts: '1.7K', rating: '4.5' },
+      { id: 310, name: 'DaBaby', category: 'music', icon: '🔥', fans: '27M', posts: '1.9K', rating: '4.3' },
+      { id: 311, name: 'Roddy Ricch', category: 'music', icon: '🎵', fans: '23M', posts: '1.1K', rating: '4.4' },
+      { id: 312, name: 'Pop Smoke', category: 'music', icon: '💫', fans: '31M', posts: '456', rating: '4.7' },
+      { id: 313, name: 'Juice WRLD', category: 'music', icon: '🌍', fans: '28M', posts: '789', rating: '4.8' },
+      { id: 314, name: 'XXXTentacion', category: 'music', icon: '🖤', fans: '35M', posts: '234', rating: '4.6' },
+      { id: 315, name: 'Mac Miller', category: 'music', icon: '🎤', fans: '26M', posts: '567', rating: '4.9' },
+      { id: 316, name: 'Tyler, The Creator', category: 'music', icon: '🌸', fans: '24M', posts: '892', rating: '4.7' },
+      { id: 317, name: 'Frank Ocean', category: 'music', icon: '🌊', fans: '22M', posts: '89', rating: '4.9' },
+      { id: 319, name: 'SZA', category: 'music', icon: '✨', fans: '18M', posts: '634', rating: '4.6' },
+      { id: 320, name: 'H.E.R.', category: 'music', icon: '🎸', fans: '15M', posts: '523', rating: '4.7' },
+      { id: 321, name: 'Summer Walker', category: 'music', icon: '☀️', fans: '12M', posts: '789', rating: '4.5' },
+      { id: 322, name: 'Jhené Aiko', category: 'music', icon: '🦋', fans: '14M', posts: '456', rating: '4.6' },
+      { id: 323, name: 'Kehlani', category: 'music', icon: '💙', fans: '11M', posts: '1.1K', rating: '4.5' },
+      { id: 324, name: 'Bryson Tiller', category: 'music', icon: '🎵', fans: '13M', posts: '678', rating: '4.4' },
+      { id: 325, name: 'Tory Lanez', category: 'music', icon: '🎤', fans: '16M', posts: '2.1K', rating: '4.2' },
+      { id: 326, name: 'Chris Brown', category: 'music', icon: '💃', fans: '47M', posts: '4.2K', rating: '4.3' },
+      { id: 327, name: 'Usher', category: 'music', icon: '🕺', fans: '39M', posts: '1.8K', rating: '4.7' },
+      { id: 328, name: 'R. Kelly', category: 'music', icon: '🎤', fans: '21M', posts: '234', rating: '3.8' },
+      { id: 329, name: 'Ne-Yo', category: 'music', icon: '🎩', fans: '18M', posts: '567', rating: '4.5' },
+      { id: 330, name: 'Jason Derulo', category: 'music', icon: '💃', fans: '25M', posts: '2.8K', rating: '4.4' },
+      { id: 331, name: 'Pitbull', category: 'music', icon: '🐕', fans: '33M', posts: '1.9K', rating: '4.5' },
+      { id: 332, name: 'Flo Rida', category: 'music', icon: '🌴', fans: '19M', posts: '1.2K', rating: '4.3' },
+      { id: 333, name: 'Lil Jon', category: 'music', icon: '🎉', fans: '17M', posts: '1.5K', rating: '4.4' },
+
+      // Movies (84 celebrities)
+      { id: 51, name: 'Tom Holland', category: 'movies', icon: '🕷️', fans: '67M', posts: '856', rating: '4.8' },
+      { id: 52, name: 'Scarlett Johansson', category: 'movies', icon: '🌟', fans: '61M', posts: '423', rating: '4.9' },
+      { id: 53, name: 'Chris Evans', category: 'movies', icon: '🛡️', fans: '58M', posts: '567', rating: '4.8' },
+      { id: 54, name: 'Emma Stone', category: 'movies', icon: '🎭', fans: '43M', posts: '289', rating: '4.7' },
+      { id: 55, name: 'Ryan Reynolds', category: 'movies', icon: '😄', fans: '65M', posts: '1.1K', rating: '4.9' },
+      { id: 56, name: 'Robert Downey Jr.', category: 'movies', icon: '🤖', fans: '72M', posts: '934', rating: '4.9' },
+      { id: 57, name: 'Chris Hemsworth', category: 'movies', icon: '🔨', fans: '59M', posts: '678', rating: '4.8' },
+      { id: 58, name: 'Mark Ruffalo', category: 'movies', icon: '💚', fans: '41M', posts: '567', rating: '4.7' },
+      { id: 59, name: 'Jeremy Renner', category: 'movies', icon: '🏹', fans: '38M', posts: '456', rating: '4.6' },
+      { id: 60, name: 'Paul Rudd', category: 'movies', icon: '🐜', fans: '44M', posts: '789', rating: '4.8' },
+      { id: 61, name: 'Brie Larson', category: 'movies', icon: '⭐', fans: '39M', posts: '523', rating: '4.7' },
+      { id: 62, name: 'Anthony Mackie', category: 'movies', icon: '🦅', fans: '35M', posts: '634', rating: '4.6' },
+      { id: 63, name: 'Sebastian Stan', category: 'movies', icon: '🦾', fans: '37M', posts: '712', rating: '4.7' },
+      { id: 64, name: 'Elizabeth Olsen', category: 'movies', icon: '🔴', fans: '42M', posts: '456', rating: '4.8' },
+      { id: 65, name: 'Tom Hiddleston', category: 'movies', icon: '🐍', fans: '46M', posts: '567', rating: '4.8' },
+      { id: 66, name: 'Benedict Cumberbatch', category: 'movies', icon: '🔮', fans: '48M', posts: '345', rating: '4.9' },
+      { id: 67, name: 'Chadwick Boseman', category: 'movies', icon: '🖤', fans: '52M', posts: '234', rating: '5.0' },
+      { id: 68, name: 'Michael B. Jordan', category: 'movies', icon: '🔥', fans: '41M', posts: '789', rating: '4.8' },
+      { id: 69, name: 'Lupita Nyong\'o', category: 'movies', icon: '👑', fans: '36M', posts: '456', rating: '4.7' },
+      { id: 70, name: 'Danai Gurira', category: 'movies', icon: '⚔️', fans: '33M', posts: '523', rating: '4.6' },
+      { id: 71, name: 'Gal Gadot', category: 'movies', icon: '⚡', fans: '54M', posts: '892', rating: '4.8' },
+      { id: 72, name: 'Henry Cavill', category: 'movies', icon: '🦸', fans: '49M', posts: '634', rating: '4.9' },
+      { id: 73, name: 'Ben Affleck', category: 'movies', icon: '🦇', fans: '43M', posts: '345', rating: '4.6' },
+      { id: 74, name: 'Ezra Miller', category: 'movies', icon: '⚡', fans: '31M', posts: '234', rating: '4.5' },
+      { id: 75, name: 'Jason Momoa', category: 'movies', icon: '🌊', fans: '47M', posts: '1.2K', rating: '4.8' },
+      { id: 76, name: 'Margot Robbie', category: 'movies', icon: '💎', fans: '51M', posts: '678', rating: '4.9' },
+      { id: 77, name: 'Will Smith', category: 'movies', icon: '😎', fans: '56M', posts: '1.5K', rating: '4.7' },
+      { id: 78, name: 'Jared Leto', category: 'movies', icon: '🃏', fans: '38M', posts: '567', rating: '4.6' },
+      { id: 79, name: 'Viola Davis', category: 'movies', icon: '👑', fans: '34M', posts: '456', rating: '4.8' },
+      { id: 80, name: 'Jai Courtney', category: 'movies', icon: '💥', fans: '29M', posts: '234', rating: '4.5' },
+      { id: 81, name: 'Leonardo DiCaprio', category: 'movies', icon: '🌟', fans: '68M', posts: '345', rating: '4.9' },
+      { id: 82, name: 'Brad Pitt', category: 'movies', icon: '🎬', fans: '62M', posts: '456', rating: '4.8' },
+      { id: 83, name: 'Angelina Jolie', category: 'movies', icon: '🌟', fans: '59M', posts: '567', rating: '4.8' },
+      { id: 84, name: 'Jennifer Lawrence', category: 'movies', icon: '🏹', fans: '53M', posts: '678', rating: '4.7' },
+      { id: 85, name: 'Chris Pratt', category: 'movies', icon: '🚀', fans: '47M', posts: '892', rating: '4.7' },
+      { id: 86, name: 'Zoe Saldana', category: 'movies', icon: '🌌', fans: '41M', posts: '523', rating: '4.6' },
+      { id: 87, name: 'Dave Bautista', category: 'movies', icon: '💪', fans: '38M', posts: '634', rating: '4.6' },
+      { id: 88, name: 'Bradley Cooper', category: 'movies', icon: '🎭', fans: '45M', posts: '345', rating: '4.8' },
+      { id: 89, name: 'Lady Gaga', category: 'movies', icon: '🌟', fans: '67M', posts: '1.4K', rating: '4.8' },
+      { id: 90, name: 'Rami Malek', category: 'movies', icon: '👑', fans: '36M', posts: '234', rating: '4.9' },
+      { id: 91, name: 'Emma Watson', category: 'movies', icon: '📚', fans: '49M', posts: '456', rating: '4.8' },
+      { id: 92, name: 'Daniel Radcliffe', category: 'movies', icon: '⚡', fans: '42M', posts: '567', rating: '4.7' },
+      { id: 93, name: 'Rupert Grint', category: 'movies', icon: '🧙', fans: '35M', posts: '234', rating: '4.6' },
+      { id: 94, name: 'Alan Rickman', category: 'movies', icon: '🖤', fans: '38M', posts: '123', rating: '4.9' },
+      { id: 95, name: 'Maggie Smith', category: 'movies', icon: '👵', fans: '31M', posts: '89', rating: '4.8' },
+      { id: 96, name: 'Helena Bonham Carter', category: 'movies', icon: '🎭', fans: '33M', posts: '234', rating: '4.7' },
+      { id: 97, name: 'Ralph Fiennes', category: 'movies', icon: '🐍', fans: '29M', posts: '156', rating: '4.8' },
+      { id: 98, name: 'Gary Oldman', category: 'movies', icon: '🦇', fans: '34M', posts: '234', rating: '4.9' },
+      { id: 99, name: 'Tim Burton', category: 'movies', icon: '🎬', fans: '37M', posts: '345', rating: '4.8' },
+      { id: 100, name: 'Johnny Depp', category: 'movies', icon: '🏴‍☠️', fans: '51M', posts: '678', rating: '4.7' },
+      { id: 334, name: 'Dwayne Johnson', category: 'movies', icon: '🗿', fans: '89M', posts: '2.1K', rating: '4.8' },
+      { id: 335, name: 'Vin Diesel', category: 'movies', icon: '🏎️', fans: '52M', posts: '1.3K', rating: '4.6' },
+      { id: 336, name: 'Jason Statham', category: 'movies', icon: '💪', fans: '41M', posts: '678', rating: '4.7' },
+      { id: 337, name: 'Michelle Rodriguez', category: 'movies', icon: '🔥', fans: '28M', posts: '892', rating: '4.5' },
+      { id: 338, name: 'Tyrese Gibson', category: 'movies', icon: '🚗', fans: '23M', posts: '1.1K', rating: '4.4' },
+      { id: 339, name: 'Ludacris', category: 'movies', icon: '🎤', fans: '26M', posts: '1.5K', rating: '4.5' },
+      { id: 340, name: 'Charlize Theron', category: 'movies', icon: '⚡', fans: '34M', posts: '456', rating: '4.8' },
+      { id: 341, name: 'Helen Mirren', category: 'movies', icon: '👑', fans: '19M', posts: '234', rating: '4.9' },
+      { id: 342, name: 'Kurt Russell', category: 'movies', icon: '🤠', fans: '22M', posts: '345', rating: '4.7' },
+      { id: 343, name: 'John Cena', category: 'movies', icon: '💪', fans: '37M', posts: '1.8K', rating: '4.6' },
+      { id: 344, name: 'Keanu Reeves', category: 'movies', icon: '🕴️', fans: '45M', posts: '123', rating: '4.9' },
+      { id: 345, name: 'Halle Berry', category: 'movies', icon: '🌟', fans: '31M', posts: '567', rating: '4.7' },
+      { id: 346, name: 'Ian McShane', category: 'movies', icon: '🎭', fans: '15M', posts: '89', rating: '4.8' },
+      { id: 347, name: 'Lance Reddick', category: 'movies', icon: '🕶️', fans: '12M', posts: '156', rating: '4.7' },
+      { id: 348, name: 'Laurence Fishburne', category: 'movies', icon: '💊', fans: '18M', posts: '234', rating: '4.8' },
+      { id: 349, name: 'Carrie-Anne Moss', category: 'movies', icon: '🖤', fans: '14M', posts: '178', rating: '4.6' },
+      { id: 350, name: 'Hugo Weaving', category: 'movies', icon: '🕴️', fans: '16M', posts: '123', rating: '4.7' },
+      { id: 351, name: 'Joe Pantoliano', category: 'movies', icon: '🎭', fans: '8M', posts: '89', rating: '4.5' },
+      { id: 352, name: 'Anthony Hopkins', category: 'movies', icon: '🎭', fans: '27M', posts: '234', rating: '4.9' },
+      { id: 353, name: 'Jodie Foster', category: 'movies', icon: '🌟', fans: '24M', posts: '156', rating: '4.8' },
+      { id: 354, name: 'Scott Glenn', category: 'movies', icon: '🤠', fans: '9M', posts: '67', rating: '4.6' },
+      { id: 355, name: 'Ted Levine', category: 'movies', icon: '🎭', fans: '7M', posts: '45', rating: '4.5' },
+      { id: 356, name: 'Denzel Washington', category: 'movies', icon: '👑', fans: '38M', posts: '456', rating: '4.9' },
+      { id: 357, name: 'Morgan Freeman', category: 'movies', icon: '🎙️', fans: '42M', posts: '234', rating: '4.9' },
+      { id: 358, name: 'Samuel L. Jackson', category: 'movies', icon: '😎', fans: '39M', posts: '789', rating: '4.8' },
+      { id: 359, name: 'John Travolta', category: 'movies', icon: '🕺', fans: '29M', posts: '567', rating: '4.6' },
+      { id: 360, name: 'Uma Thurman', category: 'movies', icon: '⚔️', fans: '26M', posts: '345', rating: '4.7' },
+      { id: 361, name: 'Bruce Willis', category: 'movies', icon: '💥', fans: '33M', posts: '456', rating: '4.7' },
+      { id: 362, name: 'Harvey Keitel', category: 'movies', icon: '🎭', fans: '17M', posts: '123', rating: '4.6' },
+      { id: 363, name: 'Tim Roth', category: 'movies', icon: '🎬', fans: '14M', posts: '178', rating: '4.5' },
+      { id: 364, name: 'Steve Buscemi', category: 'movies', icon: '👁️', fans: '21M', posts: '234', rating: '4.7' },
+      { id: 365, name: 'Michael Madsen', category: 'movies', icon: '🕶️', fans: '13M', posts: '156', rating: '4.4' },
+      { id: 366, name: 'Christopher Walken', category: 'movies', icon: '🎭', fans: '25M', posts: '289', rating: '4.8' },
+      { id: 367, name: 'Al Pacino', category: 'movies', icon: '👑', fans: '35M', posts: '345', rating: '4.9' },
+
+      // Sports (83 celebrities)
+      { id: 101, name: 'Cristiano Ronaldo', category: 'sports', icon: '⚽', fans: '156M', posts: '4.8K', rating: '5.0' },
+      { id: 102, name: 'Lionel Messi', category: 'sports', icon: '⚽', fans: '148M', posts: '3.9K', rating: '5.0' },
+      { id: 103, name: 'LeBron James', category: 'sports', icon: '🏀', fans: '82M', posts: '3.2K', rating: '4.9' },
+      { id: 104, name: 'Serena Williams', category: 'sports', icon: '🎾', fans: '45M', posts: '2.1K', rating: '4.9' },
+      { id: 105, name: 'Stephen Curry', category: 'sports', icon: '🏀', fans: '38M', posts: '1.8K', rating: '4.8' },
+      { id: 106, name: 'Kevin Durant', category: 'sports', icon: '🏀', fans: '35M', posts: '1.5K', rating: '4.7' },
+      { id: 107, name: 'Giannis Antetokounmpo', category: 'sports', icon: '🏀', fans: '32M', posts: '1.2K', rating: '4.8' },
+      { id: 108, name: 'Kylian Mbappé', category: 'sports', icon: '⚽', fans: '41M', posts: '2.3K', rating: '4.9' },
+      { id: 109, name: 'Neymar Jr.', category: 'sports', icon: '⚽', fans: '67M', posts: '3.4K', rating: '4.7' },
+      { id: 110, name: 'Erling Haaland', category: 'sports', icon: '⚽', fans: '28M', posts: '1.1K', rating: '4.8' },
+      { id: 111, name: 'Robert Lewandowski', category: 'sports', icon: '⚽', fans: '24M', posts: '987', rating: '4.7' },
+      { id: 112, name: 'Karim Benzema', category: 'sports', icon: '⚽', fans: '22M', posts: '856', rating: '4.6' },
+      { id: 113, name: 'Luka Modrić', category: 'sports', icon: '⚽', fans: '19M', posts: '634', rating: '4.7' },
+      { id: 114, name: 'Virgil van Dijk', category: 'sports', icon: '⚽', fans: '17M', posts: '523', rating: '4.6' },
+      { id: 115, name: 'Mohamed Salah', category: 'sports', icon: '⚽', fans: '26M', posts: '1.4K', rating: '4.8' },
+      { id: 116, name: 'Sadio Mané', category: 'sports', icon: '⚽', fans: '15M', posts: '712', rating: '4.7' },
+      { id: 117, name: 'Kevin De Bruyne', category: 'sports', icon: '⚽', fans: '18M', posts: '634', rating: '4.8' },
+      { id: 118, name: 'Raheem Sterling', category: 'sports', icon: '⚽', fans: '16M', posts: '892', rating: '4.6' },
+      { id: 119, name: 'Harry Kane', category: 'sports', icon: '⚽', fans: '14M', posts: '567', rating: '4.7' },
+      { id: 120, name: 'Son Heung-min', category: 'sports', icon: '⚽', fans: '21M', posts: '1.1K', rating: '4.8' },
+      { id: 121, name: 'Novak Djokovic', category: 'sports', icon: '🎾', fans: '31M', posts: '1.8K', rating: '4.9' },
+      { id: 122, name: 'Rafael Nadal', category: 'sports', icon: '🎾', fans: '29M', posts: '1.2K', rating: '4.9' },
+      { id: 123, name: 'Roger Federer', category: 'sports', icon: '🎾', fans: '34M', posts: '892', rating: '5.0' },
+      { id: 124, name: 'Naomi Osaka', category: 'sports', icon: '🎾', fans: '18M', posts: '1.3K', rating: '4.7' },
+      { id: 125, name: 'Simone Biles', category: 'sports', icon: '🤸', fans: '23M', posts: '1.5K', rating: '4.9' },
+      { id: 126, name: 'Usain Bolt', category: 'sports', icon: '🏃', fans: '27M', posts: '2.1K', rating: '4.8' },
+      { id: 127, name: 'Michael Phelps', category: 'sports', icon: '🏊', fans: '25M', posts: '934', rating: '4.9' },
+      { id: 128, name: 'Tom Brady', category: 'sports', icon: '🏈', fans: '33M', posts: '1.7K', rating: '4.8' },
+      { id: 129, name: 'Patrick Mahomes', category: 'sports', icon: '🏈', fans: '19M', posts: '1.2K', rating: '4.7' },
+      { id: 130, name: 'Aaron Rodgers', category: 'sports', icon: '🏈', fans: '17M', posts: '856', rating: '4.6' },
+      { id: 131, name: 'Russell Wilson', category: 'sports', icon: '🏈', fans: '15M', posts: '1.1K', rating: '4.7' },
+      { id: 132, name: 'Lamar Jackson', category: 'sports', icon: '🏈', fans: '14M', posts: '934', rating: '4.6' },
+      { id: 133, name: 'Josh Allen', category: 'sports', icon: '🏈', fans: '12M', posts: '678', rating: '4.7' },
+      { id: 134, name: 'Dak Prescott', category: 'sports', icon: '🏈', fans: '11M', posts: '567', rating: '4.5' },
+      { id: 135, name: 'Kyrie Irving', category: 'sports', icon: '🏀', fans: '16M', posts: '1.3K', rating: '4.6' },
+      { id: 136, name: 'James Harden', category: 'sports', icon: '🏀', fans: '18M', posts: '1.1K', rating: '4.5' },
+      { id: 137, name: 'Kawhi Leonard', category: 'sports', icon: '🏀', fans: '14M', posts: '456', rating: '4.7' },
+      { id: 138, name: 'Anthony Davis', category: 'sports', icon: '🏀', fans: '13M', posts: '789', rating: '4.6' },
+      { id: 139, name: 'Damian Lillard', category: 'sports', icon: '🏀', fans: '12M', posts: '892', rating: '4.7' },
+      { id: 140, name: 'Luka Dončić', category: 'sports', icon: '🏀', fans: '15M', posts: '634', rating: '4.8' },
+      { id: 141, name: 'Jayson Tatum', category: 'sports', icon: '🏀', fans: '9M', posts: '523', rating: '4.6' },
+      { id: 142, name: 'Devin Booker', category: 'sports', icon: '🏀', fans: '8M', posts: '712', rating: '4.5' },
+      { id: 143, name: 'Trae Young', category: 'sports', icon: '🏀', fans: '7M', posts: '456', rating: '4.6' },
+      { id: 144, name: 'Ja Morant', category: 'sports', icon: '🏀', fans: '6M', posts: '634', rating: '4.7' },
+      { id: 145, name: 'Zion Williamson', category: 'sports', icon: '🏀', fans: '8M', posts: '345', rating: '4.5' },
+      { id: 146, name: 'Lewis Hamilton', category: 'sports', icon: '🏎️', fans: '22M', posts: '1.8K', rating: '4.8' },
+      { id: 147, name: 'Max Verstappen', category: 'sports', icon: '🏎️', fans: '18M', posts: '1.2K', rating: '4.9' },
+      { id: 148, name: 'Charles Leclerc', category: 'sports', icon: '🏎️', fans: '14M', posts: '892', rating: '4.7' },
+      { id: 149, name: 'Lando Norris', category: 'sports', icon: '🏎️', fans: '12M', posts: '1.1K', rating: '4.6' },
+      { id: 150, name: 'Daniel Ricciardo', category: 'sports', icon: '🏎️', fans: '11M', posts: '934', rating: '4.7' },
+      { id: 368, name: 'Tiger Woods', category: 'sports', icon: '🐅', fans: '43M', posts: '1.2K', rating: '4.8' },
+      { id: 369, name: 'Phil Mickelson', category: 'sports', icon: '⛳', fans: '18M', posts: '892', rating: '4.6' },
+      { id: 370, name: 'Rory McIlroy', category: 'sports', icon: '🏌️', fans: '21M', posts: '634', rating: '4.7' },
+      { id: 371, name: 'Jordan Spieth', category: 'sports', icon: '⛳', fans: '14M', posts: '456', rating: '4.5' },
+      { id: 372, name: 'Dustin Johnson', category: 'sports', icon: '🏌️', fans: '12M', posts: '523', rating: '4.6' },
+      { id: 373, name: 'Brooks Koepka', category: 'sports', icon: '🏆', fans: '11M', posts: '378', rating: '4.5' },
+      { id: 374, name: 'Justin Thomas', category: 'sports', icon: '⛳', fans: '9M', posts: '445', rating: '4.4' },
+      { id: 375, name: 'Rickie Fowler', category: 'sports', icon: '🧡', fans: '13M', posts: '712', rating: '4.5' },
+      { id: 376, name: 'Jason Day', category: 'sports', icon: '🏌️', fans: '8M', posts: '289', rating: '4.4' },
+      { id: 377, name: 'Adam Scott', category: 'sports', icon: '⛳', fans: '7M', posts: '234', rating: '4.5' },
+      { id: 378, name: 'Conor McGregor', category: 'sports', icon: '🥊', fans: '47M', posts: '1.8K', rating: '4.6' },
+      { id: 379, name: 'Khabib Nurmagomedov', category: 'sports', icon: '🦅', fans: '34M', posts: '234', rating: '4.9' },
+      { id: 380, name: 'Jon Jones', category: 'sports', icon: '🏆', fans: '28M', posts: '567', rating: '4.5' },
+      { id: 381, name: 'Daniel Cormier', category: 'sports', icon: '🥊', fans: '19M', posts: '892', rating: '4.7' },
+      { id: 382, name: 'Anderson Silva', category: 'sports', icon: '🕷️', fans: '22M', posts: '456', rating: '4.8' },
+      { id: 383, name: 'Georges St-Pierre', category: 'sports', icon: '🇨🇦', fans: '25M', posts: '234', rating: '4.9' },
+      { id: 384, name: 'Ronda Rousey', category: 'sports', icon: '👊', fans: '31M', posts: '678', rating: '4.6' },
+      { id: 385, name: 'Amanda Nunes', category: 'sports', icon: '🦁', fans: '16M', posts: '345', rating: '4.7' },
+      { id: 386, name: 'Valentina Shevchenko', category: 'sports', icon: '💎', fans: '14M', posts: '289', rating: '4.6' },
+      { id: 387, name: 'Rose Namajunas', category: 'sports', icon: '🌹', fans: '12M', posts: '234', rating: '4.5' },
+      { id: 388, name: 'Floyd Mayweather', category: 'sports', icon: '💰', fans: '41M', posts: '1.5K', rating: '4.4' },
+      { id: 389, name: 'Manny Pacquiao', category: 'sports', icon: '🥊', fans: '38M', posts: '892', rating: '4.8' },
+      { id: 390, name: 'Canelo Alvarez', category: 'sports', icon: '🇲🇽', fans: '29M', posts: '634', rating: '4.7' },
+      { id: 391, name: 'Anthony Joshua', category: 'sports', icon: '🥊', fans: '26M', posts: '456', rating: '4.6' },
+      { id: 392, name: 'Tyson Fury', category: 'sports', icon: '👑', fans: '23M', posts: '789', rating: '4.7' },
+      { id: 393, name: 'Deontay Wilder', category: 'sports', icon: '💥', fans: '21M', posts: '523', rating: '4.5' },
+      { id: 394, name: 'Gennady Golovkin', category: 'sports', icon: '🥊', fans: '18M', posts: '345', rating: '4.6' },
+      { id: 395, name: 'Vasyl Lomachenko', category: 'sports', icon: '🇺🇦', fans: '15M', posts: '234', rating: '4.8' },
+      { id: 396, name: 'Terence Crawford', category: 'sports', icon: '🥊', fans: '13M', posts: '289', rating: '4.7' },
+      { id: 397, name: 'Errol Spence Jr.', category: 'sports', icon: '👊', fans: '12M', posts: '178', rating: '4.6' },
+      { id: 398, name: 'Shawn Porter', category: 'sports', icon: '🥊', fans: '9M', posts: '234', rating: '4.5' },
+      { id: 399, name: 'Keith Thurman', category: 'sports', icon: '💪', fans: '8M', posts: '156', rating: '4.4' },
+      { id: 400, name: 'Danny Garcia', category: 'sports', icon: '🥊', fans: '11M', posts: '267', rating: '4.5' },
+
+      // TV Shows (84 celebrities)
+      { id: 151, name: 'Zendaya', category: 'tv', icon: '⭐', fans: '78M', posts: '934', rating: '4.9' },
+      { id: 152, name: 'Pedro Pascal', category: 'tv', icon: '🤠', fans: '12M', posts: '456', rating: '4.9' },
+      { id: 153, name: 'Millie Bobby Brown', category: 'tv', icon: '🔮', fans: '34M', posts: '1.2K', rating: '4.8' },
+      { id: 154, name: 'Finn Wolfhard', category: 'tv', icon: '🎸', fans: '18M', posts: '678', rating: '4.6' },
+      { id: 155, name: 'Noah Schnapp', category: 'tv', icon: '🧙', fans: '15M', posts: '567', rating: '4.5' },
+      { id: 156, name: 'Gaten Matarazzo', category: 'tv', icon: '🦷', fans: '12M', posts: '456', rating: '4.6' },
+      { id: 157, name: 'Caleb McLaughlin', category: 'tv', icon: '📻', fans: '11M', posts: '345', rating: '4.5' },
+      { id: 158, name: 'Sadie Sink', category: 'tv', icon: '🔥', fans: '14M', posts: '523', rating: '4.7' },
+      { id: 159, name: 'Maya Hawke', category: 'tv', icon: '🍦', fans: '9M', posts: '234', rating: '4.6' },
+      { id: 160, name: 'Joe Keery', category: 'tv', icon: '💇', fans: '8M', posts: '312', rating: '4.7' },
+      { id: 161, name: 'Natalia Dyer', category: 'tv', icon: '📰', fans: '7M', posts: '189', rating: '4.5' },
+      { id: 162, name: 'Charlie Heaton', category: 'tv', icon: '📷', fans: '6M', posts: '156', rating: '4.4' },
+      { id: 163, name: 'Winona Ryder', category: 'tv', icon: '👩', fans: '13M', posts: '278', rating: '4.8' },
+      { id: 164, name: 'David Harbour', category: 'tv', icon: '👮', fans: '10M', posts: '445', rating: '4.7' },
+      { id: 165, name: 'Kit Harington', category: 'tv', icon: '⚔️', fans: '16M', posts: '234', rating: '4.8' },
+      { id: 166, name: 'Emilia Clarke', category: 'tv', icon: '🐉', fans: '19M', posts: '567', rating: '4.9' },
+      { id: 167, name: 'Peter Dinklage', category: 'tv', icon: '🍷', fans: '14M', posts: '123', rating: '4.9' },
+      { id: 168, name: 'Lena Headey', category: 'tv', icon: '👑', fans: '12M', posts: '189', rating: '4.7' },
+      { id: 169, name: 'Nikolaj Coster-Waldau', category: 'tv', icon: '🦁', fans: '9M', posts: '156', rating: '4.6' },
+      { id: 170, name: 'Sophie Turner', category: 'tv', icon: '🐺', fans: '15M', posts: '678', rating: '4.7' },
+      { id: 171, name: 'Maisie Williams', category: 'tv', icon: '🗡️', fans: '13M', posts: '892', rating: '4.6' },
+      { id: 172, name: 'Isaac Hempstead Wright', category: 'tv', icon: '👁️', fans: '6M', posts: '234', rating: '4.5' },
+      { id: 173, name: 'John Bradley', category: 'tv', icon: '📚', fans: '5M', posts: '123', rating: '4.6' },
+      { id: 174, name: 'Gwendoline Christie', category: 'tv', icon: '⚔️', fans: '8M', posts: '167', rating: '4.7' },
+      { id: 175, name: 'Rory McCann', category: 'tv', icon: '🔥', fans: '4M', posts: '89', rating: '4.8' },
+      { id: 176, name: 'Bryan Cranston', category: 'tv', icon: '🧪', fans: '11M', posts: '345', rating: '4.9' },
+      { id: 177, name: 'Aaron Paul', category: 'tv', icon: '💎', fans: '9M', posts: '567', rating: '4.8' },
+      { id: 178, name: 'Bob Odenkirk', category: 'tv', icon: '⚖️', fans: '7M', posts: '234', rating: '4.7' },
+      { id: 179, name: 'Rhea Seehorn', category: 'tv', icon: '💼', fans: '5M', posts: '189', rating: '4.6' },
+      { id: 180, name: 'Jonathan Banks', category: 'tv', icon: '🕵️', fans: '4M', posts: '123', rating: '4.7' },
+      { id: 181, name: 'Giancarlo Esposito', category: 'tv', icon: '🐔', fans: '8M', posts: '278', rating: '4.8' },
+      { id: 182, name: 'Anna Gunn', category: 'tv', icon: '💰', fans: '3M', posts: '156', rating: '4.5' },
+      { id: 183, name: 'Dean Norris', category: 'tv', icon: '👮', fans: '3M', posts: '134', rating: '4.4' },
+      { id: 184, name: 'Betsy Brandt', category: 'tv', icon: '💜', fans: '2M', posts: '89', rating: '4.5' },
+      { id: 185, name: 'RJ Mitte', category: 'tv', icon: '🍳', fans: '2M', posts: '167', rating: '4.6' },
+      { id: 186, name: 'Jennifer Aniston', category: 'tv', icon: '☕', fans: '23M', posts: '1.1K', rating: '4.8' },
+      { id: 187, name: 'Courteney Cox', category: 'tv', icon: '🧹', fans: '18M', posts: '678', rating: '4.7' },
+      { id: 188, name: 'Lisa Kudrow', category: 'tv', icon: '🎵', fans: '15M', posts: '456', rating: '4.6' },
+      { id: 189, name: 'Matt LeBlanc', category: 'tv', icon: '🥪', fans: '12M', posts: '234', rating: '4.5' },
+      { id: 190, name: 'Matthew Perry', category: 'tv', icon: '😄', fans: '14M', posts: '189', rating: '4.7' },
+      { id: 191, name: 'David Schwimmer', category: 'tv', icon: '🦕', fans: '10M', posts: '156', rating: '4.6' },
+      { id: 192, name: 'Steve Carell', category: 'tv', icon: '📄', fans: '16M', posts: '567', rating: '4.8' },
+      { id: 193, name: 'John Krasinski', category: 'tv', icon: '📹', fans: '14M', posts: '445', rating: '4.7' },
+      { id: 194, name: 'Jenna Fischer', category: 'tv', icon: '📞', fans: '12M', posts: '334', rating: '4.6' },
+      { id: 195, name: 'Rainn Wilson', category: 'tv', icon: '🥇', fans: '9M', posts: '278', rating: '4.7' },
+      { id: 196, name: 'Mindy Kaling', category: 'tv', icon: '💄', fans: '11M', posts: '567', rating: '4.6' },
+      { id: 197, name: 'B.J. Novak', category: 'tv', icon: '✍️', fans: '7M', posts: '234', rating: '4.5' },
+      { id: 198, name: 'Ed Helms', category: 'tv', icon: '🎤', fans: '8M', posts: '189', rating: '4.6' },
+      { id: 199, name: 'Angela Kinsey', category: 'tv', icon: '🐱', fans: '6M', posts: '156', rating: '4.5' },
+      { id: 200, name: 'Oscar Nunez', category: 'tv', icon: '🧮', fans: '4M', posts: '123', rating: '4.4' },
+      { id: 401, name: 'Jim Parsons', category: 'tv', icon: '🧪', fans: '19M', posts: '456', rating: '4.7' },
+      { id: 402, name: 'Johnny Galecki', category: 'tv', icon: '🤓', fans: '15M', posts: '234', rating: '4.6' },
+      { id: 403, name: 'Kaley Cuoco', category: 'tv', icon: '✈️', fans: '18M', posts: '892', rating: '4.7' },
+      { id: 404, name: 'Simon Helberg', category: 'tv', icon: '🎹', fans: '12M', posts: '345', rating: '4.5' },
+      { id: 405, name: 'Kunal Nayyar', category: 'tv', icon: '🌟', fans: '11M', posts: '289', rating: '4.5' },
+      { id: 406, name: 'Mayim Bialik', category: 'tv', icon: '🧠', fans: '13M', posts: '567', rating: '4.6' },
+      { id: 407, name: 'Melissa Rauch', category: 'tv', icon: '🎭', fans: '9M', posts: '234', rating: '4.4' },
+      { id: 408, name: 'Kevin Hart', category: 'tv', icon: '😂', fans: '67M', posts: '2.1K', rating: '4.6' },
+      { id: 409, name: 'Jerry Seinfeld', category: 'tv', icon: '🍕', fans: '24M', posts: '345', rating: '4.8' },
+      { id: 410, name: 'Julia Louis-Dreyfus', category: 'tv', icon: '👑', fans: '16M', posts: '234', rating: '4.7' },
+      { id: 411, name: 'Jason Alexander', category: 'tv', icon: '🥯', fans: '12M', posts: '178', rating: '4.6' },
+      { id: 412, name: 'Michael Richards', category: 'tv', icon: '🚪', fans: '8M', posts: '89', rating: '4.3' },
+      { id: 413, name: 'Wayne Knight', category: 'tv', icon: '📮', fans: '6M', posts: '123', rating: '4.4' },
+      { id: 414, name: 'Danny DeVito', category: 'tv', icon: '🥃', fans: '21M', posts: '567', rating: '4.7' },
+      { id: 415, name: 'Charlie Day', category: 'tv', icon: '🐱', fans: '14M', posts: '445', rating: '4.6' },
+      { id: 416, name: 'Glenn Howerton', category: 'tv', icon: '⭐', fans: '11M', posts: '289', rating: '4.5' },
+      { id: 417, name: 'Rob McElhenney', category: 'tv', icon: '🍺', fans: '13M', posts: '634', rating: '4.6' },
+      { id: 418, name: 'Kaitlin Olson', category: 'tv', icon: '🦅', fans: '9M', posts: '234', rating: '4.4' },
+      { id: 419, name: 'Hugh Jackman', category: 'tv', icon: '🎭', fans: '32M', posts: '567', rating: '4.8' },
+      { id: 420, name: 'Patrick Stewart', category: 'tv', icon: '🚀', fans: '18M', posts: '234', rating: '4.9' },
+      { id: 421, name: 'Ian McKellen', category: 'tv', icon: '🧙', fans: '22M', posts: '178', rating: '4.8' },
+      { id: 422, name: 'James McAvoy', category: 'tv', icon: '🧠', fans: '17M', posts: '345', rating: '4.7' },
+      { id: 423, name: 'Michael Fassbender', category: 'tv', icon: '🔩', fans: '19M', posts: '234', rating: '4.6' },
+      { id: 424, name: 'Jennifer Lawrence', category: 'tv', icon: '🔥', fans: '53M', posts: '678', rating: '4.7' },
+      { id: 425, name: 'Nicholas Hoult', category: 'tv', icon: '💙', fans: '12M', posts: '289', rating: '4.5' },
+      { id: 426, name: 'Rose Byrne', category: 'tv', icon: '💎', fans: '14M', posts: '234', rating: '4.6' },
+      { id: 427, name: 'Lucas Till', category: 'tv', icon: '⚡', fans: '8M', posts: '156', rating: '4.4' },
+      { id: 428, name: 'Evan Peters', category: 'tv', icon: '💨', fans: '16M', posts: '445', rating: '4.7' },
+      { id: 429, name: 'Tye Sheridan', category: 'tv', icon: '👁️', fans: '11M', posts: '234', rating: '4.5' },
+      { id: 430, name: 'Sophie Turner', category: 'tv', icon: '🔥', fans: '15M', posts: '678', rating: '4.7' },
+      { id: 431, name: 'Alexandra Shipp', category: 'tv', icon: '⛈️', fans: '9M', posts: '289', rating: '4.4' },
+      { id: 432, name: 'Kodi Smit-McPhee', category: 'tv', icon: '🌙', fans: '7M', posts: '156', rating: '4.5' },
+      { id: 433, name: 'Oscar Isaac', category: 'tv', icon: '🌟', fans: '18M', posts: '345', rating: '4.8' },
+      { id: 434, name: 'Jessica Chastain', category: 'tv', icon: '🦊', fans: '16M', posts: '234', rating: '4.7' },
+
+      // Fashion (83 celebrities)
+      { id: 201, name: 'Rihanna', category: 'fashion', icon: '💎', fans: '92M', posts: '1.5K', rating: '5.0' },
+      { id: 202, name: 'Kim Kardashian', category: 'fashion', icon: '👑', fans: '87M', posts: '3.2K', rating: '4.7' },
+      { id: 203, name: 'Kylie Jenner', category: 'fashion', icon: '💋', fans: '79M', posts: '2.8K', rating: '4.6' },
+      { id: 204, name: 'Kendall Jenner', category: 'fashion', icon: '📸', fans: '71M', posts: '1.9K', rating: '4.7' },
+      { id: 205, name: 'Gigi Hadid', category: 'fashion', icon: '👗', fans: '68M', posts: '2.1K', rating: '4.8' },
+      { id: 206, name: 'Bella Hadid', category: 'fashion', icon: '🌟', fans: '64M', posts: '1.7K', rating: '4.7' },
+      { id: 207, name: 'Hailey Bieber', category: 'fashion', icon: '✨', fans: '59M', posts: '2.3K', rating: '4.6' },
+      { id: 208, name: 'Emily Ratajkowski', category: 'fashion', icon: '📷', fans: '52M', posts: '1.8K', rating: '4.5' },
+      { id: 209, name: 'Cara Delevingne', category: 'fashion', icon: '🦋', fans: '48M', posts: '1.4K', rating: '4.6' },
+      { id: 210, name: 'Kaia Gerber', category: 'fashion', icon: '🌸', fans: '43M', posts: '1.1K', rating: '4.7' },
+      { id: 211, name: 'Irina Shayk', category: 'fashion', icon: '🌹', fans: '41M', posts: '967', rating: '4.6' },
+      { id: 212, name: 'Adriana Lima', category: 'fashion', icon: '👼', fans: '39M', posts: '834', rating: '4.8' },
+      { id: 213, name: 'Candice Swanepoel', category: 'fashion', icon: '🦢', fans: '37M', posts: '756', rating: '4.7' },
+      { id: 214, name: 'Alessandra Ambrosio', category: 'fashion', icon: '🌺', fans: '35M', posts: '1.2K', rating: '4.6' },
+      { id: 215, name: 'Miranda Kerr', category: 'fashion', icon: '🌼', fans: '33M', posts: '689', rating: '4.7' },
+      { id: 216, name: 'Rosie Huntington-Whiteley', category: 'fashion', icon: '💫', fans: '31M', posts: '567', rating: '4.8' },
+      { id: 217, name: 'Karlie Kloss', category: 'fashion', icon: '🎀', fans: '29M', posts: '723', rating: '4.6' },
+      { id: 218, name: 'Chrissy Teigen', category: 'fashion', icon: '🍳', fans: '45M', posts: '2.4K', rating: '4.5' },
+      { id: 219, name: 'Blake Lively', category: 'fashion', icon: '🌟', fans: '42M', posts: '456', rating: '4.8' },
+      { id: 220, name: 'Zendaya', category: 'fashion', icon: '⭐', fans: '78M', posts: '934', rating: '4.9' },
+      { id: 221, name: 'Lupita Nyong\'o', category: 'fashion', icon: '👑', fans: '36M', posts: '456', rating: '4.7' },
+      { id: 223, name: 'Priyanka Chopra', category: 'fashion', icon: '🌟', fans: '38M', posts: '1.3K', rating: '4.6' },
+      { id: 224, name: 'Deepika Padukone', category: 'fashion', icon: '💃', fans: '34M', posts: '892', rating: '4.7' },
+      { id: 225, name: 'Sonam Kapoor', category: 'fashion', icon: '👗', fans: '28M', posts: '1.1K', rating: '4.5' },
+      { id: 226, name: 'Alia Bhatt', category: 'fashion', icon: '🌸', fans: '32M', posts: '756', rating: '4.6' },
+      { id: 227, name: 'Katrina Kaif', category: 'fashion', icon: '💫', fans: '30M', posts: '634', rating: '4.5' },
+      { id: 228, name: 'Anushka Sharma', category: 'fashion', icon: '🌺', fans: '26M', posts: '523', rating: '4.6' },
+      { id: 229, name: 'Jacqueline Fernandez', category: 'fashion', icon: '🦋', fans: '24M', posts: '1.2K', rating: '4.4' },
+      { id: 230, name: 'Disha Patani', category: 'fashion', icon: '✨', fans: '22M', posts: '967', rating: '4.5' },
+      { id: 231, name: 'Shraddha Kapoor', category: 'fashion', icon: '🌼', fans: '25M', posts: '689', rating: '4.6' },
+      { id: 232, name: 'Kriti Sanon', category: 'fashion', icon: '🌹', fans: '21M', posts: '834', rating: '4.5' },
+      { id: 233, name: 'Janhvi Kapoor', category: 'fashion', icon: '🎀', fans: '19M', posts: '1.1K', rating: '4.4' },
+      { id: 234, name: 'Sara Ali Khan', category: 'fashion', icon: '👑', fans: '18M', posts: '892', rating: '4.5' },
+      { id: 235, name: 'Tara Sutaria', category: 'fashion', icon: '🌟', fans: '16M', posts: '567', rating: '4.4' },
+      { id: 236, name: 'Ananya Panday', category: 'fashion', icon: '💃', fans: '17M', posts: '723', rating: '4.3' },
+      { id: 237, name: 'Kiara Advani', category: 'fashion', icon: '🌺', fans: '20M', posts: '634', rating: '4.5' },
+      { id: 238, name: 'Nora Fatehi', category: 'fashion', icon: '💫', fans: '15M', posts: '1.3K', rating: '4.4' },
+      { id: 239, name: 'Malaika Arora', category: 'fashion', icon: '🔥', fans: '14M', posts: '1.5K', rating: '4.3' },
+      { id: 240, name: 'Kareena Kapoor', category: 'fashion', icon: '👗', fans: '27M', posts: '456', rating: '4.7' },
+      { id: 241, name: 'Aishwarya Rai', category: 'fashion', icon: '👑', fans: '31M', posts: '234', rating: '4.8' },
+      { id: 242, name: 'Madhuri Dixit', category: 'fashion', icon: '💃', fans: '23M', posts: '345', rating: '4.7' },
+      { id: 243, name: 'Vidya Balan', category: 'fashion', icon: '🌟', fans: '18M', posts: '278', rating: '4.6' },
+      { id: 244, name: 'Kangana Ranaut', category: 'fashion', icon: '🦋', fans: '16M', posts: '567', rating: '4.4' },
+      { id: 245, name: 'Tabu', category: 'fashion', icon: '🌹', fans: '12M', posts: '189', rating: '4.7' },
+      { id: 246, name: 'Konkona Sen Sharma', category: 'fashion', icon: '🎭', fans: '8M', posts: '123', rating: '4.6' },
+      { id: 247, name: 'Radhika Apte', category: 'fashion', icon: '🌸', fans: '9M', posts: '234', rating: '4.5' },
+      { id: 248, name: 'Tillotama Shome', category: 'fashion', icon: '🌼', fans: '6M', posts: '156', rating: '4.6' },
+      { id: 249, name: 'Kalki Koechlin', category: 'fashion', icon: '🦢', fans: '7M', posts: '167', rating: '4.5' },
+      { id: 250, name: 'Richa Chadha', category: 'fashion', icon: '✨', fans: '5M', posts: '134', rating: '4.4' },
+      { id: 435, name: 'Naomi Campbell', category: 'fashion', icon: '👑', fans: '41M', posts: '1.2K', rating: '4.8' },
+      { id: 436, name: 'Kate Moss', category: 'fashion', icon: '🌟', fans: '38M', posts: '456', rating: '4.9' },
+      { id: 437, name: 'Cindy Crawford', category: 'fashion', icon: '💫', fans: '35M', posts: '678', rating: '4.8' },
+      { id: 438, name: 'Claudia Schiffer', category: 'fashion', icon: '💎', fans: '32M', posts: '345', rating: '4.7' },
+      { id: 439, name: 'Linda Evangelista', category: 'fashion', icon: '✨', fans: '29M', posts: '234', rating: '4.8' },
+      { id: 440, name: 'Christy Turlington', category: 'fashion', icon: '🌹', fans: '27M', posts: '289', rating: '4.7' },
+      { id: 441, name: 'Tatjana Patitz', category: 'fashion', icon: '🦋', fans: '24M', posts: '156', rating: '4.6' },
+      { id: 442, name: 'Stephanie Seymour', category: 'fashion', icon: '💃', fans: '21M', posts: '234', rating: '4.5' },
+      { id: 443, name: 'Helena Christensen', category: 'fashion', icon: '🌺', fans: '19M', posts: '345', rating: '4.6' },
+      { id: 444, name: 'Yasmeen Ghauri', category: 'fashion', icon: '🌸', fans: '16M', posts: '178', rating: '4.5' },
+      { id: 445, name: 'Tyra Banks', category: 'fashion', icon: '📸', fans: '33M', posts: '1.5K', rating: '4.6' },
+      { id: 446, name: 'Heidi Klum', category: 'fashion', icon: '🎭', fans: '31M', posts: '1.8K', rating: '4.7' },
+      { id: 447, name: 'Gisele Bündchen', category: 'fashion', icon: '🌿', fans: '42M', posts: '892', rating: '4.8' },
+      { id: 448, name: 'Adriana Lima', category: 'fashion', icon: '👼', fans: '39M', posts: '834', rating: '4.8' },
+      { id: 449, name: 'Alessandra Ambrosio', category: 'fashion', icon: '🌺', fans: '35M', posts: '1.2K', rating: '4.6' },
+      { id: 450, name: 'Behati Prinsloo', category: 'fashion', icon: '🦋', fans: '28M', posts: '567', rating: '4.5' },
+      { id: 451, name: 'Lily Aldridge', category: 'fashion', icon: '🌼', fans: '26M', posts: '634', rating: '4.6' },
+      { id: 452, name: 'Martha Hunt', category: 'fashion', icon: '🌟', fans: '23M', posts: '445', rating: '4.4' },
+      { id: 453, name: 'Sara Sampaio', category: 'fashion', icon: '💫', fans: '21M', posts: '789', rating: '4.5' },
+      { id: 454, name: 'Romee Strijd', category: 'fashion', icon: '✨', fans: '19M', posts: '523', rating: '4.4' },
+      { id: 455, name: 'Elsa Hosk', category: 'fashion', icon: '🌸', fans: '17M', posts: '678', rating: '4.5' },
+      { id: 456, name: 'Josephine Skriver', category: 'fashion', icon: '🦢', fans: '15M', posts: '456', rating: '4.4' },
+      { id: 457, name: 'Jasmine Tookes', category: 'fashion', icon: '💎', fans: '13M', posts: '567', rating: '4.3' },
+      { id: 458, name: 'Taylor Hill', category: 'fashion', icon: '🌺', fans: '18M', posts: '892', rating: '4.5' },
+      { id: 459, name: 'Barbara Palvin', category: 'fashion', icon: '🌹', fans: '22M', posts: '1.1K', rating: '4.6' },
+      { id: 460, name: 'Winnie Harlow', category: 'fashion', icon: '🦋', fans: '24M', posts: '1.3K', rating: '4.7' },
+      { id: 461, name: 'Ashley Graham', category: 'fashion', icon: '💪', fans: '27M', posts: '1.8K', rating: '4.6' },
+      { id: 462, name: 'Paloma Elsesser', category: 'fashion', icon: '🌟', fans: '12M', posts: '634', rating: '4.5' },
+      { id: 463, name: 'Precious Lee', category: 'fashion', icon: '💫', fans: '8M', posts: '445', rating: '4.4' },
+      { id: 464, name: 'Jill Kortleve', category: 'fashion', icon: '🌸', fans: '6M', posts: '289', rating: '4.3' },
+      { id: 465, name: 'Alva Claire', category: 'fashion', icon: '✨', fans: '4M', posts: '178', rating: '4.2' },
+      { id: 466, name: 'Yumi Nu', category: 'fashion', icon: '🌺', fans: '5M', posts: '234', rating: '4.3' },
+      { id: 467, name: 'Denise Bidot', category: 'fashion', icon: '💎', fans: '7M', posts: '567', rating: '4.4' },
+
+      // Gaming (83 celebrities)
+      { id: 251, name: 'PewDiePie', category: 'gaming', icon: '🎮', fans: '111M', posts: '4.3K', rating: '4.7' },
+      { id: 252, name: 'Ninja', category: 'gaming', icon: '🥷', fans: '24M', posts: '2.1K', rating: '4.6' },
+      { id: 253, name: 'Shroud', category: 'gaming', icon: '🎯', fans: '18M', posts: '1.8K', rating: '4.8' },
+      { id: 254, name: 'Pokimane', category: 'gaming', icon: '👑', fans: '16M', posts: '1.5K', rating: '4.7' },
+      { id: 255, name: 'Valkyrae', category: 'gaming', icon: '⚡', fans: '14M', posts: '1.9K', rating: '4.6' },
+      { id: 256, name: 'Corpse Husband', category: 'gaming', icon: '💀', fans: '12M', posts: '234', rating: '4.9' },
+      { id: 257, name: 'Dream', category: 'gaming', icon: '😴', fans: '22M', posts: '567', rating: '4.5' },
+      { id: 258, name: 'GeorgeNotFound', category: 'gaming', icon: '🔍', fans: '8M', posts: '345', rating: '4.6' },
+      { id: 259, name: 'Sapnap', category: 'gaming', icon: '🔥', fans: '6M', posts: '456', rating: '4.5' },
+      { id: 260, name: 'TommyInnit', category: 'gaming', icon: '🎪', fans: '9M', posts: '1.2K', rating: '4.4' },
+      { id: 261, name: 'Tubbo', category: 'gaming', icon: '🐝', fans: '5M', posts: '892', rating: '4.5' },
+      { id: 262, name: 'Ranboo', category: 'gaming', icon: '🖤', fans: '4M', posts: '678', rating: '4.6' },
+      { id: 263, name: 'Wilbur Soot', category: 'gaming', icon: '🎵', fans: '3M', posts: '234', rating: '4.7' },
+      { id: 264, name: 'Technoblade', category: 'gaming', icon: '👑', fans: '7M', posts: '123', rating: '4.9' },
+      { id: 265, name: 'Philza', category: 'gaming', icon: '🪶', fans: '2M', posts: '345', rating: '4.6' },
+      { id: 266, name: 'CaptainSparklez', category: 'gaming', icon: '⭐', fans: '11M', posts: '2.8K', rating: '4.5' },
+      { id: 267, name: 'DanTDM', category: 'gaming', icon: '💎', fans: '26M', posts: '3.1K', rating: '4.7' },
+      { id: 268, name: 'Markiplier', category: 'gaming', icon: '🎭', fans: '34M', posts: '4.2K', rating: '4.8' },
+      { id: 269, name: 'Jacksepticeye', category: 'gaming', icon: '👁️', fans: '28M', posts: '3.9K', rating: '4.7' },
+      { id: 270, name: 'VanossGaming', category: 'gaming', icon: '🦉', fans: '25M', posts: '2.7K', rating: '4.6' },
+      { id: 271, name: 'Dude Perfect', category: 'gaming', icon: '🎯', fans: '58M', posts: '567', rating: '4.8' },
+      { id: 272, name: 'MrBeast', category: 'gaming', icon: '💰', fans: '112M', posts: '234', rating: '4.9' },
+      { id: 273, name: 'Logan Paul', category: 'gaming', icon: '🥊', fans: '23M', posts: '1.5K', rating: '4.3' },
+      { id: 274, name: 'KSI', category: 'gaming', icon: '🥊', fans: '24M', posts: '1.8K', rating: '4.5' },
+      { id: 275, name: 'Sidemen', category: 'gaming', icon: '👥', fans: '16M', posts: '892', rating: '4.6' },
+      { id: 276, name: 'Miniminter', category: 'gaming', icon: '⚽', fans: '4M', posts: '567', rating: '4.4' },
+      { id: 277, name: 'Zerkaa', category: 'gaming', icon: '🎮', fans: '3M', posts: '456', rating: '4.5' },
+      { id: 278, name: 'TBJZL', category: 'gaming', icon: '🏀', fans: '3M', posts: '345', rating: '4.4' },
+      { id: 279, name: 'Behzinga', category: 'gaming', icon: '💪', fans: '3M', posts: '678', rating: '4.3' },
+      { id: 280, name: 'Vikkstar123', category: 'gaming', icon: '⭐', fans: '7M', posts: '234', rating: '4.6' },
+      { id: 281, name: 'W2S', category: 'gaming', icon: '🎪', fans: '16M', posts: '1.2K', rating: '4.5' },
+      { id: 282, name: 'Tfue', category: 'gaming', icon: '🏆', fans: '12M', posts: '1.1K', rating: '4.4' },
+      { id: 283, name: 'TimTheTatman', category: 'gaming', icon: '⏰', fans: '7M', posts: '1.8K', rating: '4.6' },
+      { id: 284, name: 'DrLupo', category: 'gaming', icon: '🐺', fans: '5M', posts: '1.3K', rating: '4.7' },
+      { id: 285, name: 'CourageJD', category: 'gaming', icon: '🎤', fans: '4M', posts: '1.5K', rating: '4.5' },
+      { id: 286, name: 'Sykkuno', category: 'gaming', icon: '🌱', fans: '3M', posts: '892', rating: '4.8' },
+      { id: 287, name: 'DisguisedToast', category: 'gaming', icon: '🍞', fans: '2M', posts: '567', rating: '4.6' },
+      { id: 288, name: 'LilyPichu', category: 'gaming', icon: '🌸', fans: '3M', posts: '1.1K', rating: '4.7' },
+      { id: 289, name: 'Scarra', category: 'gaming', icon: '🎯', fans: '1M', posts: '456', rating: '4.5' },
+      { id: 290, name: 'Michael Reeves', category: 'gaming', icon: '🤖', fans: '6M', posts: '89', rating: '4.9' },
+      { id: 291, name: 'CodeMiko', category: 'gaming', icon: '🤖', fans: '1M', posts: '234', rating: '4.4' },
+      { id: 292, name: 'Amouranth', category: 'gaming', icon: '🦄', fans: '5M', posts: '2.3K', rating: '4.2' },
+      { id: 293, name: 'xQc', category: 'gaming', icon: '🎮', fans: '11M', posts: '3.4K', rating: '4.3' },
+      { id: 294, name: 'HasanAbi', category: 'gaming', icon: '📺', fans: '2M', posts: '1.8K', rating: '4.4' },
+      { id: 295, name: 'Asmongold', category: 'gaming', icon: '⚔️', fans: '3M', posts: '2.1K', rating: '4.5' },
+      { id: 296, name: 'Mizkif', category: 'gaming', icon: '🎪', fans: '2M', posts: '1.9K', rating: '4.3' },
+      { id: 297, name: 'Sodapoppin', category: 'gaming', icon: '🥤', fans: '3M', posts: '2.7K', rating: '4.4' },
+      { id: 298, name: 'Summit1g', category: 'gaming', icon: '🏔️', fans: '6M', posts: '3.2K', rating: '4.6' },
+      { id: 299, name: 'Lirik', category: 'gaming', icon: '🎮', fans: '3M', posts: '2.8K', rating: '4.5' },
+      { id: 300, name: 'CohhCarnage', category: 'gaming', icon: '🎯', fans: '2M', posts: '3.5K', rating: '4.7' },
+      { id: 468, name: 'Faker', category: 'gaming', icon: '👑', fans: '8M', posts: '234', rating: '4.9' },
+      { id: 469, name: 'Doublelift', category: 'gaming', icon: '🏆', fans: '3M', posts: '567', rating: '4.7' },
+      { id: 470, name: 'Bjergsen', category: 'gaming', icon: '⚡', fans: '2M', posts: '345', rating: '4.6' },
+      { id: 471, name: 'Caps', category: 'gaming', icon: '🧢', fans: '1M', posts: '234', rating: '4.5' },
+      { id: 472, name: 'Perkz', category: 'gaming', icon: '💎', fans: '900K', posts: '178', rating: '4.6' },
+      { id: 473, name: 'Rekkles', category: 'gaming', icon: '🎯', fans: '1.2M', posts: '289', rating: '4.5' },
+      { id: 474, name: 'Jankos', category: 'gaming', icon: '🌟', fans: '800K', posts: '445', rating: '4.4' },
+      { id: 475, name: 'TheShy', category: 'gaming', icon: '🗡️', fans: '1.5M', posts: '156', rating: '4.7' },
+      { id: 476, name: 'Rookie', category: 'gaming', icon: '🎮', fans: '1.1M', posts: '123', rating: '4.6' },
+      { id: 477, name: 'Uzi', category: 'gaming', icon: '🔫', fans: '2.3M', posts: '234', rating: '4.8' },
+      { id: 478, name: 's1mple', category: 'gaming', icon: '🎯', fans: '4M', posts: '567', rating: '4.9' },
+      { id: 479, name: 'ZywOo', category: 'gaming', icon: '🇫🇷', fans: '2M', posts: '345', rating: '4.8' },
+      { id: 480, name: 'device', category: 'gaming', icon: '🎯', fans: '1.8M', posts: '234', rating: '4.7' },
+      { id: 481, name: 'NiKo', category: 'gaming', icon: '💥', fans: '1.5M', posts: '289', rating: '4.6' },
+      { id: 482, name: 'coldzera', category: 'gaming', icon: '❄️', fans: '1.3M', posts: '178', rating: '4.5' },
+      { id: 483, name: 'FalleN', category: 'gaming', icon: '🇧🇷', fans: '1.7M', posts: '456', rating: '4.6' },
+      { id: 484, name: 'fer', category: 'gaming', icon: '🔥', fans: '900K', posts: '234', rating: '4.4' },
+      { id: 485, name: 'TACO', category: 'gaming', icon: '🌮', fans: '700K', posts: '156', rating: '4.3' },
+      { id: 486, name: 'fnx', category: 'gaming', icon: '🎯', fans: '600K', posts: '123', rating: '4.4' },
+      { id: 487, name: 'flamie', category: 'gaming', icon: '🔥', fans: '800K', posts: '234', rating: '4.3' },
+      { id: 488, name: 'ElectroNic', category: 'gaming', icon: '⚡', fans: '1.1M', posts: '289', rating: '4.5' },
+      { id: 489, name: 'Perfecto', category: 'gaming', icon: '💎', fans: '700K', posts: '178', rating: '4.4' },
+      { id: 490, name: 'b1t', category: 'gaming', icon: '🎯', fans: '500K', posts: '134', rating: '4.5' },
+      { id: 491, name: 'Boombl4', category: 'gaming', icon: '💥', fans: '600K', posts: '156', rating: '4.2' },
+      { id: 492, name: 'sh1ro', category: 'gaming', icon: '🌟', fans: '400K', posts: '89', rating: '4.6' },
+      { id: 493, name: 'Ax1Le', category: 'gaming', icon: '🪓', fans: '350K', posts: '67', rating: '4.5' },
+      { id: 494, name: 'interz', category: 'gaming', icon: '🎮', fans: '300K', posts: '45', rating: '4.4' },
+      { id: 495, name: 'Hobbit', category: 'gaming', icon: '🐰', fans: '450K', posts: '123', rating: '4.3' },
+      { id: 496, name: 'nafany', category: 'gaming', icon: '🎯', fans: '250K', posts: '78', rating: '4.4' },
+      { id: 497, name: 'Patsi', category: 'gaming', icon: '🌟', fans: '200K', posts: '56', rating: '4.2' },
+      { id: 498, name: 'donk', category: 'gaming', icon: '🔥', fans: '180K', posts: '34', rating: '4.7' },
+      { id: 499, name: 'magixx', category: 'gaming', icon: '✨', fans: '150K', posts: '23', rating: '4.5' },
+      { id: 500, name: 'w0nderful', category: 'gaming', icon: '🌈', fans: '120K', posts: '12', rating: '4.6' }
+    ];
+
+    let selectedCategory = null;
+    let followedCelebrities = new Set();
+    let searchQuery = '';
+    let searchFilter = 'all';
+    let searchSuggestions = [];
+
+    function getFilteredCelebrities() {
+      let filtered = celebrities;
+
+      // Apply search query filter
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        filtered = filtered.filter(celeb => 
+          celeb.name.toLowerCase().includes(query) ||
+          categories.find(c => c.id === celeb.category).name.toLowerCase().includes(query) ||
+          celeb.icon.includes(query) ||
+          celeb.fans.toLowerCase().includes(query)
+        );
+      }
+
+      // Apply category filter from search filters
+      if (searchFilter !== 'all') {
+        filtered = filtered.filter(c => c.category === searchFilter);
+      }
+
+      // Apply category filter from category cards (takes precedence)
+      if (selectedCategory) {
+        filtered = filtered.filter(c => c.category === selectedCategory);
+      }
+
+      return filtered;
+    }
+
+    function generateSearchSuggestions(query) {
+      if (!query || query.length < 2) return [];
+      
+      const suggestions = [];
+      const queryLower = query.toLowerCase();
+      
+      // Add celebrity name suggestions
+      celebrities.forEach(celeb => {
+        if (celeb.name.toLowerCase().includes(queryLower) && suggestions.length < 8) {
+          suggestions.push({
+            type: 'celebrity',
+            name: celeb.name,
+            category: categories.find(c => c.id === celeb.category).name,
+            icon: celeb.icon,
+            id: celeb.id
+          });
+        }
+      });
+      
+      // Add category suggestions
+      categories.forEach(cat => {
+        if (cat.name.toLowerCase().includes(queryLower) && suggestions.length < 8) {
+          suggestions.push({
+            type: 'category',
+            name: cat.name,
+            category: `${cat.count} celebrities`,
+            icon: cat.icon,
+            id: cat.id
+          });
+        }
+      });
+      
+      return suggestions;
+    }
+
+    function updateSearchStats() {
+      const filtered = getFilteredCelebrities();
+      const searchStats = document.getElementById('searchStats');
+      
+      if (searchQuery || searchFilter !== 'all' || selectedCategory) {
+        const totalFans = filtered.reduce((sum, celeb) => {
+          const fanCount = parseFloat(celeb.fans.replace('M', '').replace('K', '')) * 
+                          (celeb.fans.includes('M') ? 1000000 : celeb.fans.includes('K') ? 1000 : 1);
+          return sum + fanCount;
+        }, 0);
+        
+        const avgRating = filtered.length > 0 ? 
+          (filtered.reduce((sum, celeb) => sum + parseFloat(celeb.rating), 0) / filtered.length).toFixed(1) : 0;
+        
+        const formatFans = (count) => {
+          if (count >= 1000000000) return (count / 1000000000).toFixed(1) + 'B';
+          if (count >= 1000000) return (count / 1000000).toFixed(1) + 'M';
+          if (count >= 1000) return (count / 1000).toFixed(1) + 'K';
+          return count.toString();
+        };
+        
+        document.getElementById('totalResults').textContent = filtered.length;
+        document.getElementById('avgRating').textContent = avgRating;
+        document.getElementById('totalFans').textContent = formatFans(totalFans);
+        
+        searchStats.style.display = 'flex';
+      } else {
+        searchStats.style.display = 'none';
+      }
+    }
+
+    function updateSearchResults() {
+      const filtered = getFilteredCelebrities();
+      const resultsInfo = document.getElementById('searchResultsInfo');
+      const categoriesSection = document.getElementById('categoriesSection');
+      const celebritiesSectionTitle = document.getElementById('celebritiesSectionTitle');
+
+      if (searchQuery || searchFilter !== 'all') {
+        resultsInfo.style.display = 'block';
+        
+        let resultText = `Found ${filtered.length} result${filtered.length !== 1 ? 's' : ''}`;
+        if (searchQuery) {
+          resultText += ` for "${searchQuery}"`;
+        }
+        if (searchFilter !== 'all') {
+          const filterCategory = categories.find(c => c.id === searchFilter);
+          resultText += ` in ${filterCategory.name}`;
+        }
+        
+        resultsInfo.textContent = resultText;
+        categoriesSection.style.display = 'none';
+        celebritiesSectionTitle.textContent = 'Search Results';
+      } else {
+        resultsInfo.style.display = 'none';
+        categoriesSection.style.display = 'block';
+        celebritiesSectionTitle.textContent = selectedCategory ? 
+          `${categories.find(c => c.id === selectedCategory).name} Celebrities` : 
+          'Featured Celebrities';
+      }
+
+      updateSearchStats();
+      renderCelebrities();
+    }
+
+    function renderCategories() {
+      const grid = document.getElementById('categoriesGrid');
+      grid.innerHTML = categories.map(cat => `
+        <div class="category-card ${selectedCategory === cat.id ? 'active' : ''}" data-category="${cat.id}">
+          <span class="category-icon">${cat.icon}</span>
+          <div class="category-name">${cat.name}</div>
+          <div class="category-count">${cat.count} Celebrities</div>
         </div>
-    </section>
-</div>
-</body>
+      `).join('');
+
+      document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const category = card.dataset.category;
+          selectedCategory = selectedCategory === category ? null : category;
+          renderCategories();
+          updateSearchResults();
+        });
+      });
+    }
+
+    function renderCelebrities() {
+      const grid = document.getElementById('celebritiesGrid');
+      const filtered = getFilteredCelebrities();
+
+      if (filtered.length === 0) {
+        const emptyMessage = searchQuery ? 
+          `No celebrities found matching "${searchQuery}"` : 
+          'No celebrities found in this category';
+        
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🔍</div>
+            <div class="empty-state-text">${emptyMessage}</div>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(celeb => {
+        const isHighlighted = searchQuery && 
+          (celeb.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+           categories.find(c => c.id === celeb.category).name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+        return `
+          <div class="celebrity-card ${isHighlighted ? 'highlight' : ''}">
+            <div class="celebrity-image">${celeb.icon}</div>
+            <div class="celebrity-info">
+              <div class="celebrity-name">${celeb.name}</div>
+              <div class="celebrity-category">${categories.find(c => c.id === celeb.category).name}</div>
+              <div class="celebrity-stats">
+                <div class="stat">
+                  <div class="stat-value">${celeb.fans}</div>
+                  <div class="stat-label">Fans</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">${celeb.posts}</div>
+                  <div class="stat-label">Posts</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">${celeb.rating}</div>
+                  <div class="stat-label">Rating</div>
+                </div>
+              </div>
+              <button class="btn-follow ${followedCelebrities.has(celeb.id) ? 'following' : ''}" data-id="${celeb.id}">
+                ${followedCelebrities.has(celeb.id) ? '✓ Following' : '+ Follow'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.btn-follow').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          const celebrity = celebrities.find(c => c.id === id);
+          
+          if (followedCelebrities.has(id)) {
+            followedCelebrities.delete(id);
+          } else {
+            followedCelebrities.add(id);
+            // Open email draft for fan card request
+            openCelebrityEmailDraft(celebrity);
+          }
+          renderCelebrities();
+        });
+      });
+    }
+
+    function renderSearchSuggestions(suggestions) {
+      const suggestionsContainer = document.getElementById('searchSuggestions');
+      
+      if (suggestions.length === 0) {
+        suggestionsContainer.classList.remove('active');
+        return;
+      }
+      
+      suggestionsContainer.innerHTML = suggestions.map(suggestion => `
+        <div class="suggestion-item" data-type="${suggestion.type}" data-id="${suggestion.id}" data-name="${suggestion.name}">
+          <span class="suggestion-icon">${suggestion.icon}</span>
+          <div class="suggestion-info">
+            <div class="suggestion-name">${suggestion.name}</div>
+            <div class="suggestion-category">${suggestion.category}</div>
+          </div>
+        </div>
+      `).join('');
+      
+      suggestionsContainer.classList.add('active');
+      
+      // Add click handlers for suggestions
+      document.querySelectorAll('.suggestion-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const type = item.dataset.type;
+          const name = item.dataset.name;
+          const id = item.dataset.id;
+          
+          if (type === 'celebrity') {
+            document.getElementById('searchInput').value = name;
+            searchQuery = name;
+          } else if (type === 'category') {
+            searchFilter = id;
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+            updateSearchFilters();
+          }
+          
+          suggestionsContainer.classList.remove('active');
+          updateSearchResults();
+        });
+      });
+    }
+
+    function updateSearchFilters() {
+      document.querySelectorAll('.search-filter').forEach(filter => {
+        const filterValue = filter.dataset.filter;
+        if (filterValue === searchFilter) {
+          filter.classList.add('active');
+        } else {
+          filter.classList.remove('active');
+        }
+      });
+    }
+
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      const searchClear = document.getElementById('searchClear');
+      const suggestionsContainer = document.getElementById('searchSuggestions');
+
+      // Setup search filters
+      document.querySelectorAll('.search-filter').forEach(filter => {
+        filter.addEventListener('click', () => {
+          const filterValue = filter.dataset.filter;
+          
+          if (searchFilter === filterValue) {
+            searchFilter = 'all';
+          } else {
+            searchFilter = filterValue;
+          }
+          
+          selectedCategory = null;
+          renderCategories();
+          updateSearchFilters();
+          updateSearchResults();
+        });
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        
+        if (searchQuery) {
+          searchClear.style.display = 'block';
+          selectedCategory = null;
+          renderCategories();
+          
+          // Generate and show suggestions
+          const suggestions = generateSearchSuggestions(searchQuery);
+          renderSearchSuggestions(suggestions);
+        } else {
+          searchClear.style.display = 'none';
+          suggestionsContainer.classList.remove('active');
+        }
+        
+        updateSearchResults();
+      });
+
+      searchInput.addEventListener('focus', () => {
+        if (searchQuery && searchQuery.length >= 2) {
+          const suggestions = generateSearchSuggestions(searchQuery);
+          renderSearchSuggestions(suggestions);
+        }
+      });
+
+      searchInput.addEventListener('blur', (e) => {
+        // Delay hiding suggestions to allow clicks
+        setTimeout(() => {
+          if (!e.relatedTarget || !e.relatedTarget.closest('.search-suggestions')) {
+            suggestionsContainer.classList.remove('active');
+          }
+        }, 200);
+      });
+
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        suggestionsContainer.classList.remove('active');
+        updateSearchResults();
+        searchInput.focus();
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchQuery = '';
+          searchClear.style.display = 'none';
+          suggestionsContainer.classList.remove('active');
+          updateSearchResults();
+        }
+      });
+
+      // Close suggestions when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-box')) {
+          suggestionsContainer.classList.remove('active');
+        }
+      });
+    }
+
+    function showModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+
+    function hideModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    function openEmailDraft() {
+      const subject = encodeURIComponent('Premium Membership Request - Fan Card Access');
+      const body = encodeURIComponent(`Hello CelebrityFanCard Team,
+
+I would like to request premium membership access to get exclusive fan cards.
+
+My favorite celebrity is: [Please enter your favorite celebrity name here]
+
+Additional information about me:
+- [Please share a few details about yourself]
+- [Your interests and why you're a fan]
+- [Any other relevant information]
+
+Thank you for considering my request!
+
+Best regards,
+[Your Name]`);
+      
+      const mailtoLink = `mailto:premium@celebrityfancard.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
+    }
+
+    function openCelebrityEmailDraft(celebrity) {
+      const categoryName = categories.find(c => c.id === celebrity.category).name;
+      const subject = encodeURIComponent(`Fan Card Request - ${celebrity.name} (${categoryName})`);
+      const body = encodeURIComponent(`Hello CelebrityFanCard Team,
+
+I would like to request an exclusive fan card for ${celebrity.name}!
+
+Celebrity Details:
+- Name: ${celebrity.name}
+- Category: ${categoryName}
+- Current Fans: ${celebrity.fans}
+- Rating: ${celebrity.rating}/5.0
+
+Why I'm a fan of ${celebrity.name}:
+- [Please share why you're a fan - their work, achievements, or personal inspiration]
+- [Mention your favorite songs/movies/performances/games by this celebrity]
+- [Share how long you've been following them]
+
+Personal Information:
+- My Name: [Your full name]
+- Age: [Your age]
+- Location: [Your city/country]
+- Social Media: [Your Instagram/Twitter handle if you'd like to share]
+
+Special Requests:
+- [Any specific design preferences for the fan card]
+- [Favorite photo/era of this celebrity]
+- [Any quotes or achievements you'd like featured]
+
+I'm excited to add ${celebrity.name} to my fan card collection and show my support!
+
+Thank you for considering my request.
+
+Best regards,
+[Your Name]
+
+P.S. I discovered ${celebrity.name} through CelebrityFanCard and I'm now following them! 🌟`);
+      
+      const mailtoLink = `mailto:fancards@celebrityfancard.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
+    }
+
+    document.getElementById('membershipBtn').addEventListener('click', () => {
+      showModal('membershipModal');
+    });
+
+    document.getElementById('closeMembership').addEventListener('click', () => {
+      hideModal('membershipModal');
+    });
+
+    document.getElementById('confirmMembership').addEventListener('click', () => {
+      hideModal('membershipModal');
+      openEmailDraft();
+      showModal('successModal');
+    });
+
+    document.getElementById('closeSuccess').addEventListener('click', () => {
+      hideModal('successModal');
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const baseFontStack = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.body.style.background = `linear-gradient(135deg, ${config.background_color || defaultConfig.background_color} 0%, ${config.primary_action_color || defaultConfig.primary_action_color} 100%)`;
+
+      document.getElementById('siteTitle').textContent = config.site_title || defaultConfig.site_title;
+      document.getElementById('siteTitle').style.fontSize = `${baseSize * 1.875}px`;
+      document.getElementById('siteTitle').style.background = `linear-gradient(135deg, ${config.primary_action_color || defaultConfig.primary_action_color}, ${config.secondary_action_color || defaultConfig.secondary_action_color})`;
+      document.getElementById('siteTitle').style.webkitBackgroundClip = 'text';
+      document.getElementById('siteTitle').style.webkitTextFillColor = 'transparent';
+      document.getElementById('siteTitle').style.backgroundClip = 'text';
+
+      document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+      document.getElementById('tagline').style.fontSize = `${baseSize * 1.2}px`;
+      document.getElementById('tagline').style.color = config.text_color || defaultConfig.text_color;
+
+      document.getElementById('discountBadge').textContent = config.discount_text || defaultConfig.discount_text;
+      document.getElementById('discountBadge').style.fontSize = `${baseSize * 0.9}px`;
+
+      document.getElementById('membershipBtn').textContent = config.membership_button_text || defaultConfig.membership_button_text;
+      document.getElementById('membershipBtn').style.fontSize = `${baseSize * 0.9}px`;
+      document.getElementById('membershipBtn').style.background = `linear-gradient(135deg, ${config.secondary_action_color || defaultConfig.secondary_action_color}, ${config.primary_action_color || defaultConfig.primary_action_color})`;
+
+      document.getElementById('categoriesTitle').textContent = config.categories_title || defaultConfig.categories_title;
+      document.getElementById('categoriesTitle').style.fontSize = `${baseSize * 2.5}px`;
+
+      document.querySelectorAll('.header, .search-box, .category-card').forEach(el => {
+        el.style.background = `rgba(255, 255, 255, 0.95)`;
+      });
+
+      document.querySelectorAll('.category-name, .celebrity-name').forEach(el => {
+        el.style.color = config.text_color || defaultConfig.text_color;
+      });
+
+      document.querySelectorAll('.search-input').forEach(el => {
+        el.style.color = config.text_color || defaultConfig.text_color;
+      });
+
+      document.querySelectorAll('.btn-follow').forEach(el => {
+        if (!el.classList.contains('following')) {
+          el.style.background = `linear-gradient(135deg, ${config.primary_action_color || defaultConfig.primary_action_color}, ${config.secondary_action_color || defaultConfig.secondary_action_color})`;
+        }
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["site_title", config.site_title || defaultConfig.site_title],
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["discount_text", config.discount_text || defaultConfig.discount_text],
+          ["membership_button_text", config.membership_button_text || defaultConfig.membership_button_text],
+          ["categories_title", config.categories_title || defaultConfig.categories_title]
+        ])
+      });
+    }
+
+    setupSearch();
+    renderCategories();
+    renderCelebrities();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99af1cda73b5218d',t:'MTc2MjU0MjQzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
