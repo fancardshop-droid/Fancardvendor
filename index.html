@@ -586,15 +586,7 @@
         margin: 0 1rem;
       }
     }
-  </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Request Fan Card – FanCardShop</title>
+ <title>Request Fan Card </title>
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -623,20 +615,14 @@
     button:hover {
       transform: translateY(-2px);
       background: linear-gradient(135deg, #3399ff, #0048b3);
-    }
+  
   </style>
-</head>
 <body>
-  <h1>🎟️ FanCardShop</h1>
-  <p>Request your personalized celebrity fan card!</p>
-
-  <button id="requestBtn">Request Fan Card</button>
-
   <script>
     const requestBtn = document.getElementById("requestBtn");
 
     requestBtn.addEventListener("click", () => {
-      const email = "requests@fancardshop.com"; // Replace with your real support email
+      const email = "requests@fancardshop.com";
       const subject = encodeURIComponent("Fan Card Request – My Favorite Celebrity");
       const body = encodeURIComponent(
         `Hello FanCardShop Team,
@@ -656,7 +642,7 @@ Thank you!
       const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
       window.location.href = mailtoLink;
     });
-  </script>
+    </script>
   </body>
  <body>
   <div class="container">
